@@ -1,13 +1,13 @@
-package com.apap.tugasakhir;
+package apap.tugasakhir;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TugasAkhirApplication {
+public class TugasakhirApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TugasAkhirApplication.class, args);
+		SpringApplication.run(TugasakhirApplication.class, args);
 	}
 
 }

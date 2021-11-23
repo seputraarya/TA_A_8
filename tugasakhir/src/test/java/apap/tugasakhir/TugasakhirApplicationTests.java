@@ -1,10 +1,10 @@
-package com.apap.tugasakhir;
+package apap.tugasakhir;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TugasAkhirApplicationTests {
+class TugasakhirApplicationTests {
 
 	@Test
 	void contextLoads() {
