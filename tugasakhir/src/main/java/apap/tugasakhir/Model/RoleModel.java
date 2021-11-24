@@ -36,5 +36,5 @@ public class RoleModel {
     @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private List<RoleModel> rolePegawai;
+    private List<PegawaiModel> rolePegawai;
 }
