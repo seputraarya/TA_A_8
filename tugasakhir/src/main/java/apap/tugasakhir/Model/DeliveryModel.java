@@ -14,8 +14,8 @@ import lombok.Setter;
 @Table(name = "delivery")
 public class DeliveryModel {
 
-    @NotNull
-    @Column(name = "id_delivery", nullable = false)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idDelivery;
 
     @NotNull
