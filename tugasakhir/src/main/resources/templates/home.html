@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <title>Emsidi</title>
+    <meta charset="UTF-8">
+
+    <title>Home</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar('Home')"></nav>
+    <div class="d-flex justify-content-center" >
+        <div class="m-4">
+            <div class="d-flex justify-content-center">
+                <h2 th:text="'Hello ' + ${#httpServletRequest.remoteUser} + '!'">Login as</h2>
+            </div>
+            <div sec:authorize="hasAuthority('ADMIN')">
+                <!--ISI BUTTON FITUR-->
+            </div>
+            <div sec:authorize="hasAuthority('FACTORY MANAGER')">
+                <!--ISI BUTTON FITUR-->
+            </div>
+            <div sec:authorize="hasAuthority('STAFF OPERASIONAL')">
+                <!--ISI BUTTON FITUR-->
+            </div>
+            <div sec:authorize="hasAuthority('STAFF KURIR')">
+                <!--ISI BUTTON FITUR-->
+            </div>
+            <div sec:authorize="hasAuthority('STAFF GUDANG')">
+                <!--ISI BUTTON FITUR-->
+            </div>
+        </div>
+    </div>
+</body>
