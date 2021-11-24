@@ -5,6 +5,8 @@ import java.sql.Date;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,8 +16,8 @@ import lombok.Setter;
 @Table(name = "delivery")
 public class DeliveryModel {
 
-    @NotNull
-    @Column(name = "id_delivery", nullable = false)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idDelivery;
 
     @NotNull
@@ -41,4 +43,13 @@ public class DeliveryModel {
     @NotNull
     @Column(name = "id_request_update_item", nullable = false)
     private Long idRequestUpdateItem;
+
+    @OneToOne
+    @JsonIgnore
+    private RequestUpdateItemModel requestUpdateItem;
+
+    @OneToOne
+    @JsonIgnore
+    private PegawaiModel pegawai;
+
 }
