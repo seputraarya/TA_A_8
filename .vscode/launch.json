@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-TugasakhirApplication<tugasakhir>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "apap.tugasakhir.TugasakhirApplication",
+      "projectName": "tugasakhir",
+      "args": ""
+    }
+  ]
+}
