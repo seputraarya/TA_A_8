@@ -26,6 +26,21 @@ public class PegawaiModel {
 
     @NotNull
     @Size(max = 50)
+    @Column(name = "username", nullable = false, unique = true)
+    private String username;
+
+    @NotNull
+    @Size(max = 50)
+    @Column(name = "email", nullable = false)
+    private String email;
+
+    @NotNull
+    @Lob
+    @Column(name = "password", nullable = false)
+    private String password;
+
+    @NotNull
+    @Size(max = 50)
     @Column(name = "nama_pegawai", nullable = false)
     private String namaPegawai;
 

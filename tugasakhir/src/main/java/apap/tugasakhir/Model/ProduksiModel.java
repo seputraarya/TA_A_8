@@ -17,12 +17,12 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
-@Table(name = "mesin")
+@Table(name = "produksi")
 public class ProduksiModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idMesin;
+    private Long idProduksi;
 
     @NotNull
     @GeneratedValue(generator = "system-uuid")
@@ -47,10 +47,11 @@ public class ProduksiModel {
     @JsonIgnore
     private MesinModel mesin;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_request_update_item", referencedColumnName = "idRequestUpdateItem")
     @JsonIgnore
     private RequestUpdateItemModel requestUpdateItem;
-    // TODO: belum tau bener atau salah
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn

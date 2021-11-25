@@ -9,6 +9,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Setter
@@ -20,9 +22,11 @@ public class DeliveryModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idDelivery;
 
-    @NotNull
-    @Column(name = "id_kurir", nullable = false)
-    private int idKurir;
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name ="idKurir", referencedColumnName = "idPegawai", nullable = false)
+    @JsonIgnore
+    private PegawaiModel pegawai;
 
     @NotNull
     @Column(name = "id_cabang", nullable = false)
@@ -40,16 +44,11 @@ public class DeliveryModel {
     @Column(name = "sent", nullable = false)
     private int sent;
 
-    @NotNull
-    @Column(name = "id_request_update_item", nullable = false)
-    private Long idRequestUpdateItem;
-
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_request_update_item" )
     @JsonIgnore
     private RequestUpdateItemModel requestUpdateItem;
 
-    @OneToOne
-    @JsonIgnore
-    private PegawaiModel pegawai;
+
 
 }

@@ -15,7 +15,7 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
-@Table(name = "request_update_item")
+@Table(name = "requestupdateitem")
 public class RequestUpdateItemModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,17 +46,12 @@ public class RequestUpdateItemModel {
     @Column(name = "executed", nullable = false)
     private int executed;
 
-    @NotNull
-    @Column(name = "id_delivery", nullable = false)
-    private int idDelivery;
-
-    @OneToOne
+    @OneToOne(mappedBy = "requestUpdateItem")
     @JsonIgnore
     private ProduksiModel produksi;
-    // TODO: belum tau bener atau salah
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_delivery")
     @JsonIgnore
     private DeliveryModel delivery;
-    // TODO: belum tau bener atau salah
 }
