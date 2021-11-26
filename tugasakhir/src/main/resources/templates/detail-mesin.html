@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <title>SI-Factory</title>
+    <meta charset="UTF-8">
+
+    <title>Detail Mesin</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar('Mesin')"></nav>
+
+<div class="container">
+    <div class="card m-4 p-4">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <h2>Detail Mesin</h2>
+                <br>
+                <p th:text="'Id Mesin : ' + ${mesin.idMesin}"></p>
+                <p th:text="'Nama Mesin : ' + ${mesin.namaMesin}"></p>
+                <p th:text="'Id Kategori : ' + ${mesin.idKategori}"></p>
+                <p th:text="'Tanggal dibuat : ' + ${mesin.tanggalDibuat}"></p>
+                <p th:text="'Kapasitas : ' + ${mesin.kapasitas}"></p>
+                <div class="col">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
