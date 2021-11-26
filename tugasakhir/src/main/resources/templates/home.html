@@ -16,21 +16,55 @@
         <div class="m-4">
             <div class="d-flex justify-content-center">
                 <h2 th:text="'Hello ' + ${#httpServletRequest.remoteUser} + '!'">Login as</h2>
+                <!--
+                    Lihat List Item
+                    Detail Item
+                    Lihat Daftar Produksi
+                -->
+                <a th:href="" class="mx-2 btn btn-warning">Lihat Semua Item</a>
+                <a th:href="" class="mx-2 btn btn-outline-warning">Lihat Semua Daftar Produksi</a>
             </div>
             <div sec:authorize="hasAuthority('ADMIN')">
-                <!--ISI BUTTON FITUR-->
+                <!--ISI BUTTON FITUR
+                    Membuat Pengguna
+                    Menampilkan Daftar Pegawai
+                -->
+                <a th:href="@{/}" class="mx-2 btn btn-warning">Buat Pengguna</a>
+                <a th:href="@{/}" class="mx-2 btn btn-outline-warning">Lihat Daftar Pegawai</a>
             </div>
             <div sec:authorize="hasAuthority('FACTORY MANAGER')">
-                <!--ISI BUTTON FITUR-->
+                <!--ISI BUTTON FITUR
+                    Propose Item
+                    Menampilkan Daftar Pegawai
+                -->
+                <a th:href="@{/}" class="mx-2 btn btn-warning">Propose Item</a>
+                <a th:href="@{/}" class="mx-2 btn btn-outline-warning">Lihat Daftar Pegawai</a>
             </div>
             <div sec:authorize="hasAuthority('STAFF OPERASIONAL')">
-                <!--ISI BUTTON FITUR-->
+                <!--ISI BUTTON FITUR
+                    Daftar Request Update Item
+                    Menampilkan Daftar Delivery
+                -->
+                <a th:href="@{/}" class="mx-2 btn btn-warning">Daftar Request Update Item</a>
+                <a th:href="@{/}" class="mx-2 btn btn-outline-warning">Lihat Daftar Delivery</a>
             </div>
             <div sec:authorize="hasAuthority('STAFF KURIR')">
-                <!--ISI BUTTON FITUR-->
+                <!--ISI BUTTON FITUR
+                    Assign Delivery kurir
+                    Menampilkan Daftar Delivery
+                    Pengiriman Delivery
+                -->
+
             </div>
             <div sec:authorize="hasAuthority('STAFF GUDANG')">
-                <!--ISI BUTTON FITUR-->
+                <!--ISI BUTTON FITUR
+                    Daftar Request Update Item
+                        Menerima Request Update Item
+                        Update Stok Item dari Request Update Item
+                    Update Stok Item
+                -->
+                <a th:href="@{/}" class="mx-2 btn btn-warning">Daftar Request Update Item</a>
+                <a th:href="@{/}" class="mx-2 btn btn-outline-warning">Update Stok Item</a>
             </div>
         </div>
     </div>
