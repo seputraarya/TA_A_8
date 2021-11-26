@@ -15,40 +15,8 @@
 
 | 1906298771 | Arya Seputra Wibowo | 1 2 3 |
 
-| 1906353593 | Winalton | x x x |
+| 1906353593 | Winalton | 15 |
 
-| 1906399461 | Reno Fathoni | x x x |
+| 1906399461 | Reno Fathoni | 16 17 |
 
-| 1906399511 | Fariz Wahyuzan Dwitilas | x x x |
-
----
-
-****Kontrak Tahap 2 Tugas Akhir****
-
-| NPM | Nama Lengkap | Fitur yang akan diselesaikan  |
-
-| ----------| --- | ---------- |
-
-| 1906298771 | Arya Seputra Wibowo | x x x |
-
-| 1906353593 | Winalton | x x x |
-
-| 1906399461 | Reno Fathoni | x x x |
-
-| 1906399511 | Fariz Wahyuzan Dwitilas | x x x  |
-
----
-
-****Kontrak Tahap 1 Tugas Akhir****
-
-| NPM | Nama Lengkap | Fitur yang akan diselesaikan  |
-
-| ----------| --- | ---------- |
-
-| 1906298771 | Arya Seputra Wibowo | x x x |
-
-| 1906353593 | Winalton | x x x |
-
-| 1906399461 | Reno Fathoni | x x x |
-
-| 1906399511 | Fariz Wahyuzan Dwitilas | x x x  |
+| 1906399511 | Fariz Wahyuzan Dwitilas | 10 13 |
