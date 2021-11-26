@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <title>SI-Factory</title>
+    <meta charset="UTF-8">
+
+    <title>List Mesin</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar('Mesin')"></nav>
+
+</nav><div class="container">
+    <h2>Daftar Seluruh Mesin</h2>
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>Id Mesin</th>
+            <th>Nama Mesin</th>
+            <th>Id Kategori</th>
+            <th>Tanggal dibuat</th>
+            <th>Kapasitas</th>
+            <th>Detail</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="mesin, iterationStatus : ${listMesin}">
+            <td th:text="${iterationStatus.count}"></td>
+            <td th:text="${mesin.idMesin}"></td>
+            <td th:text="${mesin.namaMesin}"></td>
+            <td th:text="${mesin.idKategori}"></td>
+            <td th:text="${mesin.tanggalDibuat}"></td>
+            <td th:text="${mesin.kapasitas}"></td>
+            <td>
+                <a class="btn btn-primary" th:href="@{/mesin/} + ${mesin.idMesin}">Lihat Detail Mesin</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-primary" href="/">Home</a>
+</div>
+
+</body>
+
+</html>

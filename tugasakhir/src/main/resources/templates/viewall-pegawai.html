@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title> Emsidi</title>
+    <meta charset="UTF-8">
+    <title> User </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar('')"></nav>
+<div class="container">
+    <h2>Daftar Seluruh User</h2>
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Nama</th>
+            <th>Role</th>
+            <th>Gaji</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="pegawai, iterationStatus : ${listPegawai}">
+            <td th:text="${iterationStatus.count}"></td>
+            <td th:text="${pegawai.username}"></td>
+            <td th:text="${pegawai.email}"></td>
+            <td th:text="${pegawai.namaPegawai}"></td>
+            <td th:text="${pegawai.role.namaRole}"></td>
+            <td th:text="${pegawai.counter * pegawai.role.baseWages}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-primary" href="/">Home</a>
+</div>
+
+</body>
+
+</html>
+
