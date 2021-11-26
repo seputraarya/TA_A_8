@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <title>SI-Factory</title>
+    <meta charset="UTF-8">
+
+    <title>Form Add Pegawai</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar('')"></nav>
+<div class="container">
+    <div class="card m-4 p-4">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <h2>Tambah Pegawai</h2>
+                <br>
+                <form th:action="@{/pegawai/add}" th:object="${pegawai}" method="POST">
+
+                    <label>Nama :</label>
+                    <input required class="form-control" type="text" name="namaPegawai" />
+
+                    <label>Username :</label>
+                    <input type="text" name="username" class="form-control"/>
+
+                    <label>Password :</label>
+                    <input type="password" name="password" class="form-control"/>
+
+                    <label>Email :</label>
+                    <input type="email" name="email" class="form-control"/>
+
+                    <label>Tangga Lahir: </label> <br>
+                    <input required class="form-control" type="date" name="tanggalLahir"/>
+
+                    <label>Role :</label>
+                    <select name="role" class="form-control">
+                        <option selected value="">--Pilih Role--</option>
+                        <option th:each="role: ${listRole}" th:value="${role.idRole}" th:text="${role.namaRole}">
+                        </option>
+                    </select>
+
+<!--                    <label>Counter :</label>-->
+                    <input type="number" name="counter" value="1" class="form-control" hidden/>
+
+                    <br>
+
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                    <a class="btn btn-primary" href="/">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
