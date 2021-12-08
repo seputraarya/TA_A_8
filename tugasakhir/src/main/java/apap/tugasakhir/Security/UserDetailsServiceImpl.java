@@ -17,7 +17,7 @@ import apap.tugasakhir.Repository.UserDb;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-    @Autowired(required = false)
+    @Autowired
     private UserDb userDb;
 
     @Override
