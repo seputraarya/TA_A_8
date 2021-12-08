@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title> View Item </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar('')"></nav>
+<div class="container">
+    <div class="card m-4 p-4">
+        <h2 class="badge bg-danger text-dark text-center" style="font-size: 50px">Detail Item</h2>
+        <div class="card-body">
+            <div class="justify-content-center">
+                <div class="row">
+                    <div class="col-4">
+                        Id
+                    </div>
+                    <div class="col-8">
+                        <p th:text="': ' + ${item.uuid}"></p>
+                    </div>
+
+                    <div class="col-4">
+                        Nama
+                    </div>
+                    <div class="col-8">
+                        <p th:text="': ' + ${item.nama}"></p>
+                    </div>
+
+                    <div class="col-4">
+                        Harga
+                    </div>
+                    <div class="col-8">
+                        <p th:text="': ' + ${item.harga}"></p>
+                    </div>
+
+                    <div class="col-4">
+                        Stok
+                    </div>
+                    <div class="col-8">
+                        <p th:text="': ' + ${item.stok}"></p>
+                    </div>
+
+                    <div class="col-4">
+                        Kategori
+                    </div>
+                    <div class="col-8">
+                        <p th:text="': ' + ${item.kategori}"></p>
+                    </div>
+                </div>
+                <!--                <br>-->
+                <!--                <p th:text="'Nama Barang : ' + ${barang.nama_barang}"></p>-->
+                <!--                <p th:text="'Kode Barang : ' + ${barang.kode_barang}"></p>-->
+                <!--                <p th:text="'Merk Barang : ' + ${barang.merk_barang}"></p>-->
+                <!--                <p th:text="'Stok Barang : ' + ${barang.stok}"></p>-->
+                <!--                <p th:text="'Garansi Toko: ' + ${barang.jumlah_garansi}"></p>-->
+                <!--                <p th:text="'Deskripsi : ' + ${barang.deskripsi_barang}"></p>-->
+                <!--                <p th:text="'Tipe Barang : ' + ${barang.tipe.nama}"></p>-->
+                <!--                <p th:text="'Harga :' + 'Rp' +${barang.harga_barang}"></p>-->
+                <!--                <br>-->
+            </div>
+        </div>
+    </div>
+    <a class="btn btn-light btn-outline-danger" href="/item/viewall">Kembali</a>
+</div>
+</body>
+
+</html>

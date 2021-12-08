@@ -10,34 +10,32 @@
 </head>
 
 <body>
-<nav th:replace="fragments/fragment :: navbar('Mesin')"></nav>
+<nav th:replace="fragments/fragment :: navbar('Produksi')"></nav>
 
 </nav><div class="container">
-    <h2>Daftar Seluruh Mesin</h2>
+    <h2>Daftar Seluruh Produksi</h2>
     <br>
     <table class="table">
         <thead>
         <tr>
             <th>No</th>
-            <th>Id Mesin</th>
-            <th>Nama Mesin</th>
+            <th>Id Produksi</th>
+            <th>Id Item</th>
             <th>Id Kategori</th>
-            <th>Tanggal dibuat</th>
-            <th>Kapasitas</th>
-            <th>Detail</th>
+            <th>Tambahan Stok</th>
+            <th>Nama Pegawai</th>
+            <th>Nama Mesin</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="mesin, iterationStatus : ${listMesin}">
+        <tr th:each="produksi, iterationStatus : ${listProduksi}">
             <td th:text="${iterationStatus.count}"></td>
-            <td th:text="${mesin.idMesin}"></td>
-            <td th:text="${mesin.namaMesin}"></td>
-            <td th:text="${mesin.idKategori}"></td>
-            <td th:text="${mesin.tanggalDibuat}"></td>
-            <td th:text="${mesin.kapasitas}"></td>
-            <td>
-                <a class="btn btn-primary" th:href="@{/mesin/} + ${mesin.idMesin}">Lihat Detail Mesin</a>
-            </td>
+            <td th:text="${produksi.idProduksi}"></td>
+            <td th:text="${produksi.idItem}"></td>
+            <td th:text="${produksi.idKategori}"></td>
+            <td th:text="${produksi.tambahanStok}"></td>
+            <td th:text="${produksi.pegawai.namaPegawai}"></td>
+            <td th:text="${produksi.mesin.namaMesin}"></td>
         </tr>
         </tbody>
     </table>
