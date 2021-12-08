@@ -13,9 +13,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import java.util.Set;
 
+import javax.transaction.Transactional;
+
 import apap.tugasakhir.Repository.UserDb;
 
 @Service
+@Transactional
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserDb userDb;
