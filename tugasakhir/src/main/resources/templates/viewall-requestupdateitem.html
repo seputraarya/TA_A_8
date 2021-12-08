@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Request Update Item </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar('')"></nav>
+<div class="container">
+    <h2>Daftar Request Update Item</h2>
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>Item ID</th>
+            <th>Tanggal Request</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="requestupdateitem, iterationStatus : ${listRequestUpdateItem}">
+            <td th:text="${iterationStatus.count}"></td>
+            <td th:text="${requestupdateitem.idItem}"></td>
+            <td th:text="${requestupdateitem.tanggalRequest}"></td>
+            <td th:if="${requestupdateitem.executed == false}">
+                <a class="btn btn-primary" th:href="@{/requestupdateitem/delete/} + ${requestupdateitem.idRequestUpdateItem}"></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-primary" href="/">Home</a>
+</div>
+
+</body>
+
+</html>
+
