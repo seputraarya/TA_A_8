@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+    <head>
+        <title>SI-Factory</title>
+        <meta charset="UTF-8">
+    
+        <title>Form Propose Item</title>
+        <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+        <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    </head>
+    
+    <body>
+        <nav th:replace="fragments/fragment :: navbar('')"></nav>
+        <div class="container">
+            <div class="card m-4 p-4">
+                <div class="card-body">
+                    <div class="justify-content-center">
+                        <h2>Propose Item</h2>
+                        <br>
+                        <form th:action="@{/propose-item}" th:object="${item}" method="post">
+                            <!--FORM INPUT-->
+
+                            <label>Nama Item</label>
+
+                            <label>Harga Item</label>
+
+                            <label>Stok Item</label>
+
+                            <label>Kategori Item</label>
+
+
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                            <a class="btn btn-primary" href="/">Cancel</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
