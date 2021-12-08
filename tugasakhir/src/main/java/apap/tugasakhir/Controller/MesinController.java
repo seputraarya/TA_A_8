@@ -19,7 +19,7 @@ public class MesinController {
     @Autowired
     private MesinService mesinService;
 
-    @GetMapping("/")
+    @GetMapping("/viewall")
     public String listMesin(Model model) {
         List<MesinModel> listMesin = mesinService.getMesinList();
         model.addAttribute("listMesin", listMesin);
