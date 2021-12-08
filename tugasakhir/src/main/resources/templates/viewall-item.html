@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title> Emsidi</title>
+    <meta charset="UTF-8">
+    <title> Viewall Item </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar('')"></nav>
+<div class="container">
+    <br>
+    <h2>Daftar Seluruh Item</h2>
+    <br>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>Harga</th>
+            <th>Stok</th>
+            <th>Detail</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item, iterationStatus : ${listItem}">
+            <td th:text="${iterationStatus.count}"></td>
+            <td th:text="${item.nama}"></td>
+            <td th:text="${item.harga}"></td>
+            <td th:text="${item.stok}"></td>
+            <td>
+                <a class="btn btn-primary" th:href="@{/item/view/} + ${item.uuid}">Detail</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-primary" href="/">Home</a>
+</div>
+
+</body>
+
+</html>
+
