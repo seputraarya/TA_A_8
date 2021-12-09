@@ -44,7 +44,7 @@ public class RequestUpdateItemModel {
 
     @NotNull
     @Column(name = "executed", nullable = false)
-    private int executed;
+    private boolean executed;
 
     @OneToOne(mappedBy = "requestUpdateItem")
     @JsonIgnore

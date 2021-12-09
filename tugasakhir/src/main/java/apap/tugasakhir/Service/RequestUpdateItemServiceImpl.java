@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class RequestUpdateItemServiceImpl implements RequestUpdateItemService{
+public class RequestUpdateItemServiceImpl implements RequestUpdateItemService {
 
     @Autowired
     RequestUpdateItemDb requestUpdateItemDb;
