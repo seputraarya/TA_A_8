@@ -36,8 +36,6 @@ public class PegawaiModel {
     private String email;
 
     @NotNull
-    @Lob
-    @Type(type = "org.hibernate.type.TextType")
     @Column(name = "password", nullable = false)
     private String password;
 
