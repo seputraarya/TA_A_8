@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title> Delivery </title>
+  <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+  <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar('')"></nav>
+<div class="container">
+  <h2>Daftar Delivery</h2>
+  <br>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>No</th>
+      <th>Delivery ID</th>
+      <th>Nama Pegawai</th>
+      <th>Cabang ID</th>
+      <th>Tanggal Dibuat</th>
+      <th>Tanggal Dikirim</th>
+      <th>Status</th>
+      <th>Item</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="delivery, iterationStatus : ${listDelivery}">
+      <td th:text="${iterationStatus.count}"></td>
+      <td th:text="${delivery.idDelivery}"></td>
+      <td th:text="${delivery.pegawai.getNamaPegawai()}"></td>
+      <td th:text="${delivery.idCabang}"></td>
+      <td th:text="${delivery.tanggalDibuat}"></td>
+      <td th:text="${delivery.tanggalDikirim}"></td>
+      <td th:text="${delivery.sent}"></td>
+      <td th:text="${delivery.requestUpdateItem.getIdItem()}"></td>
+    </tr>
+    </tbody>
+  </table>
+  <a class="btn btn-primary" href="/">Home</a>
+</div>
+
+</body>
+
+</html>
+

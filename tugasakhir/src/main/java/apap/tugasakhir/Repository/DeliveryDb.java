@@ -1,11 +1,9 @@
 package apap.tugasakhir.Repository;
 
-import apap.tugasakhir.Model.RoleModel;
+import apap.tugasakhir.Model.DeliveryModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
 @Repository
-public interface RoleDb extends JpaRepository<RoleModel, Long> {
-
+public interface DeliveryDb extends JpaRepository<DeliveryModel, Long> {
 }
