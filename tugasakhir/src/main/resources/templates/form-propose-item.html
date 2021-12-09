@@ -22,13 +22,34 @@
                             <!--FORM INPUT-->
 
                             <label>Nama Item</label>
+                            <input required class="form-control" type="text" name="namaItem" />
 
                             <label>Harga Item</label>
+                            <input required class="form-control" type="number" name="hargaItem" />
 
                             <label>Stok Item</label>
+                            <input required class="form-control" type="number" name="stokItem" />
 
                             <label>Kategori Item</label>
-
+                            <select name="kategori" class="form-control">
+                                <option selected value="">--Pilih Kategori Item--</option>
+                                <div th:each="kategori: ${listKategori}">
+                                    <option th:if="${kategori} == 1" th:value="${kategori}">BUKU</option>
+                                    <option th:if="${kategori} == 2" th:value="${kategori}">DAPUR</option>
+                                    <option th:if="${kategori} == 3" th:value="${kategori}">MAKANAN & MINUMAN</option>
+                                    <option th:if="${kategori} == 4" th:value="${kategori}">ELEKTRONIK</option>
+                                    <option th:if="${kategori} == 5" th:value="${kategori}">FASHION</option>
+                                    <option th:if="${kategori} == 6" th:value="${kategori}">KECANTIKAN & PERAWATAN DIRI</option>
+                                    <option th:if="${kategori} == 7" th:value="${kategori}">FILM & MUSIK</option>
+                                    <option th:if="${kategori} == 8" th:value="${kategori}">GAMING</option>
+                                    <option th:if="${kategori} == 9" th:value="${kategori}">GADGET</option>
+                                    <option th:if="${kategori} == 10" th:value="${kategori}">KESEHATAN</option>
+                                    <option th:if="${kategori} == 11" th:value="${kategori}">RUMAH TANGGA</option>
+                                    <option th:if="${kategori} == 12" th:value="${kategori}">FURNITURE</option>
+                                    <option th:if="${kategori} == 13" th:value="${kategori}">ALAT & PERANGKAT KERAS</option>
+                                    <option th:if="${kategori} == 14" th:value="${kategori}">WEDDING</option>
+                                </div>
+                            </select>
 
                             <button class="btn btn-primary" type="submit">Submit</button>
                             <a class="btn btn-primary" href="/">Cancel</a>
