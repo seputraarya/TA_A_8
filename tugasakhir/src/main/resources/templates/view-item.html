@@ -12,7 +12,7 @@
 <nav th:replace="fragments/fragment :: navbar('')"></nav>
 <div class="container">
     <div class="card m-4 p-4">
-        <h2 class="badge bg-danger text-dark text-center" style="font-size: 50px">Detail Item</h2>
+        <h2 class="badge bg-warning text-dark text-center" style="font-size: 50px">Detail Item</h2>
         <div class="card-body">
             <div class="justify-content-center">
                 <div class="row">
@@ -64,7 +64,38 @@
             </div>
         </div>
     </div>
-    <a class="btn btn-light btn-outline-danger" href="/item/viewall">Kembali</a>
+    <br>
+    <div th:if="*{listProduksi.size() !=0}">
+        <h6>Produksi : </h6>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>No</th>
+                <th>Id Produksi</th>
+                <th>Id Item</th>
+                <th>Id Kategori</th>
+                <th>Tambahan Stok</th>
+                <th>Nama Pegawai</th>
+                <th>Nama Mesin</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="produksi, iterationStatus : ${listProduksi}">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${produksi.idProduksi}"></td>
+                <td th:text="${produksi.idItem}"></td>
+                <td th:text="${produksi.idKategori}"></td>
+                <td th:text="${produksi.tambahanStok}"></td>
+                <td th:text="${produksi.pegawai.namaPegawai}"></td>
+                <td th:text="${produksi.mesin.namaMesin}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:unless="*{listProduksi.size()!=0}">
+        <h2 th:text="'Belum ada Produksi'"></h2>
+    </div>
+    <a class="btn btn-light btn-outline-warning" href="/item/viewall">Kembali</a>
 </div>
 </body>
 

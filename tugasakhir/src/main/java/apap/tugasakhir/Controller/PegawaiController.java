@@ -2,7 +2,7 @@ package apap.tugasakhir.Controller;
 
 import apap.tugasakhir.Service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
@@ -12,7 +12,6 @@ import apap.tugasakhir.Model.RoleModel;
 
 import java.util.*;
 
-import org.springframework.stereotype.Controller;
 
 @Controller
 @RequestMapping("/pegawai")
@@ -36,11 +35,14 @@ public class PegawaiController {
     @PostMapping(value = "/add")
     private String addPegawaiSubmit(@ModelAttribute PegawaiModel pegawai, Model model){
         boolean checkPegawaiUsername = pegawaiService.checkUsername(pegawai.getUsername());
+        PegawaiModel pegawaiLogin = pegawaiService.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
         if(checkPegawaiUsername){
+            pegawaiLogin.setCounter(pegawaiLogin.getCounter()+1);
             pegawaiService.addPegawai(pegawai);
             pegawai.setCounter(Long.valueOf(1));
         }
         else{
+            model.addAttribute("username",pegawai.getUsername());
             return "username-checked";
         }
 

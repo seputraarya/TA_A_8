@@ -17,10 +17,30 @@
             <div class="d-flex justify-content-center">
                 <h2 th:text="'Hello ' + ${#httpServletRequest.remoteUser} + '!'">Login as</h2>
             </div>
+<<<<<<< Updated upstream
             <div sec:authorize="hasAuthority('ADMIN')">
                 <!--ISI BUTTON FITUR-->
                 <a th:href="@{/pegawai/add}" class="mx-2 btn btn-outline-dark">Tambah Pegawai</a>
                 <a th:href="@{/pegawai/viewall}" class="mx-2 btn btn-outline-dark">Lihat Daftar Pegawai</a>
+=======
+            <div class="d-flex justify-content-center">
+                <!--
+                    Lihat List Item
+                    Detail Item
+                    Lihat Daftar Produksi
+                -->
+                <a th:href="@{/item/viewall}" class="mx-2 btn btn-warning">Lihat Semua Item</a>
+                <a th:href="@{/}" class="mx-2 btn btn-outline-warning">Lihat Semua Daftar Produksi</a>
+            </div>
+            <div sec:authorize="hasAuthority('ADMIN')" class="d-flex justify-content-center">
+                <!--ISI BUTTON FITUR
+                    Membuat Pengguna
+                    Menampilkan Daftar Pegawai
+                -->
+                <br>
+                <a th:href="@{/pegawai/add}" class="mx-2 btn btn-warning">Buat Pengguna</a>
+                <a th:href="@{/pegawai/viewall}" class="mx-2 btn btn-outline-warning">Lihat Daftar Pegawai</a>
+>>>>>>> Stashed changes
             </div>
             <div sec:authorize="hasAuthority('FACTORY MANAGER')">
                 <!--ISI BUTTON FITUR-->
