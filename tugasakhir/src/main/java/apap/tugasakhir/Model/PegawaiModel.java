@@ -14,6 +14,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Setter
@@ -36,6 +37,7 @@ public class PegawaiModel {
 
     @NotNull
     @Lob
+    @Type(type = "org.hibernate.type.TextType")
     @Column(name = "password", nullable = false)
     private String password;
 
