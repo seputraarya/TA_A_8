@@ -54,4 +54,11 @@ public class PegawaiServiceImpl implements PegawaiService{
     public List<PegawaiModel> findAllPegawai(){
         return pegawaiDb.findAll();
     }
+
+    @Override
+    public void updatePassword(PegawaiModel pegawai, String passwordBaru) {
+        pegawai.setPassword(passwordBaru);
+        pegawaiDb.save(pegawai);
+        
+    }
 }

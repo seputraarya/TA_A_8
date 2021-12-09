@@ -12,7 +12,6 @@ import apap.tugasakhir.Model.RoleModel;
 
 import java.util.*;
 
-import org.springframework.stereotype.Controller;
 
 @Controller
 @RequestMapping("/pegawai")
