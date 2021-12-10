@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RequestUpdateItemDb extends JpaRepository<RequestUpdateItemModel, Long> {
+    RequestUpdateItemModel findByIdRequestUpdateItem(Long idRequestUpdateItem);
 }

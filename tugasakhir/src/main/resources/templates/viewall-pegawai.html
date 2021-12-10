@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 
 <head>
+    <title> Emsidi</title>
     <meta charset="UTF-8">
     <title> User </title>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
@@ -11,10 +12,11 @@
 <body>
 <nav th:replace="fragments/fragment :: navbar('')"></nav>
 <div class="container">
+    <br>
     <h2>Daftar Seluruh User</h2>
     <br>
-    <table class="table">
-        <thead>
+    <table class="table table-striped">
+        <thead class="thead-dark">
         <tr>
             <th>No</th>
             <th>Username</th>

@@ -3,9 +3,11 @@ package apap.tugasakhir.Controller;
 import apap.tugasakhir.DTO.Item;
 import apap.tugasakhir.Model.MesinModel;
 import apap.tugasakhir.Model.PegawaiModel;
+import apap.tugasakhir.Model.ProduksiModel;
 import apap.tugasakhir.Repository.MesinDb;
 import apap.tugasakhir.Service.ItemRestService;
 
+import apap.tugasakhir.Service.ProduksiService;
 import org.postgresql.translation.messages_es;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,6 +30,9 @@ public class ItemController {
     @Autowired
     private MesinDb mesinDb;
 
+    @Autowired
+    private ProduksiService produksiService;
+
     @GetMapping(value = "/viewall")
     public String listSemuaItem(Model model){
         List<Item> listItem = itemRestService.retriveAllItem();
@@ -41,6 +46,8 @@ public class ItemController {
             Model model
     ){
         List<Item> listItem = itemRestService.retriveAllItem();
+        List<ProduksiModel> produksiAll = produksiService.getProduksiList();
+        List<ProduksiModel> produksiItem = new ArrayList<>();
         Item item = null;
         for(int i = 0; i<listItem.size();i++){
             if(listItem.get(i).getUuid().equals(uuid)){
@@ -48,7 +55,14 @@ public class ItemController {
             }
             else{}
         }
+
+        for(int i=0; i< produksiAll.size();i++){
+            if(produksiAll.get(i).getIdItem().equals(uuid)){
+                produksiItem.add(produksiAll.get(i));
+            }else{}
+        }
         model.addAttribute("item", item);
+        model.addAttribute("listProduksi", produksiItem);
         return "view-item";
     }
 
@@ -58,7 +72,7 @@ public class ItemController {
         List<Long> listKategori = new ArrayList<>();
         for (MesinModel mesin : listMesin) {
             if (!listKategori.contains(mesin.getIdKategori())) listKategori.add(mesin.getIdKategori());
-            
+
         }
         model.addAttribute("listKategori", listKategori);
         return "form-propose-item";
