@@ -8,9 +8,12 @@ import apap.tugasakhir.Service.ItemRestService;
 
 import org.postgresql.translation.messages_es;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
@@ -61,10 +64,15 @@ public class ItemController {
         return "form-propose-item";
     }
 
-    @PostMapping("/api/v1/propose-item")
-    public String proposeItemSubmit(@ModelAttribute Item item, RedirectAttributes redirect) {
-        // TODO: ItemRestService
+    @PostMapping("/api/item/request-item")
+    public String proposeItemSubmit(@ModelAttribute Item item, RedirectAttributes redirect, BindingResult bindingResult) {
+        if (bindingResult.hasFieldErrors()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    "Request body has invalid type or missing field.");
+        } else {
+        itemRestService.proposeItem(item);
         return "redirect:/";
+        }
     }
 
 //    @GetMapping(value = "/viewall")
