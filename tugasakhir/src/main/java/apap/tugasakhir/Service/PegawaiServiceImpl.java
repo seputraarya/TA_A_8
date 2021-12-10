@@ -1,6 +1,7 @@
 package apap.tugasakhir.Service;
 
 import apap.tugasakhir.Model.PegawaiModel;
+import apap.tugasakhir.Model.RoleModel;
 import apap.tugasakhir.Repository.PegawaiDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -60,5 +61,14 @@ public class PegawaiServiceImpl implements PegawaiService{
         pegawai.setPassword(passwordBaru);
         pegawaiDb.save(pegawai);
         
+    }
+
+    @Override
+    public List<PegawaiModel> findByRole(RoleModel role) { return pegawaiDb.findByRole(role); }
+
+    @Override
+    public void incrementCounter(PegawaiModel pegawai) {
+        pegawai.setCounter(pegawai.getCounter() + 1);
+        pegawaiDb.save(pegawai);
     }
 }

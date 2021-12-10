@@ -29,12 +29,16 @@
             <td th:text="${requestupdateitem.idItem}"></td>
             <td th:text="${requestupdateitem.tanggalRequest}"></td>
             <td th:text="${requestupdateitem.tambahanStok}"></td>
+            <div sec:authorize="hasAuthority('STAFF_GUDANG')">
             <td th:if="${requestupdateitem.executed == false}">
                 <a class="btn btn-primary" th:href="@{/requestupdateitem/execute/} + ${requestupdateitem.idRequestUpdateItem}">Update</a>
             </td>
+            </div>
+            <div sec:authorize="hasAuthority('STAFF_OPERASIONAL')">
             <td th:if="${requestupdateitem.executed == true}">
-                <a class="btn btn-primary" th:href="@{/requestupdateitem/delete/} + ${requestupdateitem.idRequestUpdateItem}">Buat Delivery</a>
+                <a class="btn btn-danger" th:href="@{/delivery/create/} + ${requestupdateitem.idRequestUpdateItem}">Buat Delivery</a>
             </td>
+            </div>
         </tr>
         </tbody>
     </table>

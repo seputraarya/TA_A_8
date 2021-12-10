@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Form Add Delivery</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar('')"></nav>
+<div class="container">
+    <div class="card m-4 p-4">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <h2>Assign Delivery</h2>
+                <br>
+                <form th:object="${kurir}" method="POST">
+
+                    <label>Kurir :</label>
+                    <select th:field="*{username}" class="form-control">
+                        <option selected value="">--Pilih Kurir--</option>
+                        <option th:each="kurir: ${listKurir}"
+                                th:value="${kurir.username}"
+                                th:text="${kurir.namaPegawai}">
+                        </option>
+                    </select>
+
+                    <br>
+
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                    <a class="btn btn-primary" href="/">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
