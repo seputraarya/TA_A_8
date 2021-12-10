@@ -18,20 +18,20 @@
                     <div class="justify-content-center">
                         <h2>Propose Item</h2>
                         <br>
-                        <form th:action="@{/api/item/request-item}" th:object="${item}" method="post">
+                        <form th:action="@{/item/propose-item}" th:object="${item}" method="post">
                             <!--FORM INPUT-->
 
                             <label>Nama Item</label>
-                            <input required class="form-control" type="text" name="nama" />
+                            <input required class="form-control" th:field="*{nama}" type="text" name="nama" />
 
                             <label>Harga Item</label>
-                            <input required class="form-control" type="number" name="harga" />
+                            <input required class="form-control" th:field="*{harga}" type="number" name="harga" />
 
                             <label>Stok Item</label>
-                            <input required class="form-control" type="number" name="stok" />
+                            <input required class="form-control" th:field="*{stok}" type="number" name="stok" />
 
                             <label>Kategori Item</label>
-                            <select name="kategori" class="form-control">
+                            <select th:field="*{kategori}" name="kategori" class="form-control">
                                 <option selected value="">--Pilih Kategori Item--</option>
                                 <div th:each="kategori: ${listKategori}">
                                     <option th:if="${kategori} == 1" th:value="${kategori}">BUKU</option>

@@ -1,13 +1,20 @@
 package apap.tugasakhir.Service;
+
 import apap.tugasakhir.DTO.Item;
+import apap.tugasakhir.DTO.ProposeItem;
+import reactor.core.publisher.Mono;
+
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.web.header.Header;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -21,22 +28,24 @@ import javax.transaction.Transactional;
 
 @Service
 @Transactional
-public class ItemRestServiceImpl implements ItemRestService{
-    private WebClient webClient;
+public class ItemRestServiceImpl implements ItemRestService {
+    private WebClient webClientItem;
+    private WebClient webClientProposeItem;
 
-    public ItemRestServiceImpl(WebClient.Builder webClientBuilder){
-        this.webClient = webClientBuilder.baseUrl("https://si-item.herokuapp.com").build();
+    public ItemRestServiceImpl(WebClient.Builder webClientBuilder) {
+        this.webClientItem = webClientBuilder.baseUrl("https://si-item.herokuapp.com").build();
+        this.webClientProposeItem = webClientBuilder.baseUrl("https://sibusiness-7.herokuapp.com").build();
     }
 
     @Override
-    public List <Item> retriveAllItem(){
-        JsonNode jsonNode = this.webClient.get().uri("/api/item")
+    public List<Item> retriveAllItem() {
+        JsonNode jsonNode = this.webClientItem.get().uri("/api/item")
                 .retrieve()
                 .bodyToMono(JsonNode.class)
                 .block().get("result");
 
         List<Item> listItem = new ArrayList<>();
-        for(JsonNode json: jsonNode){
+        for (JsonNode json : jsonNode) {
             Item item = new Item();
             item.setUuid(json.get("uuid").asText());
             item.setNama(json.get("nama").asText());
@@ -50,22 +59,34 @@ public class ItemRestServiceImpl implements ItemRestService{
     }
 
     @Override
-    public ResponseEntity<String> proposeItem(Item item) {
+    public void proposeItem(ProposeItem item) {
         // TODO Auto-generated method stub
-        String url = "https://sibusiness-7.herokuapp.com/api/item/request-item";
+
+        String url = "https://sibusiness-7.herokuapp.com/api/request-item";
+
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+
         Map<String, Object> map = new HashMap<>();
-        map.put("nama", item.getNama());
-        map.put("harga", item.getHarga());
-        map.put("stok", item.getStok());
-        map.put("kategori", Integer.parseInt(item.getKategori()));
+        map.put("name", item.getNama());
+        map.put("stock", item.getStok());
+        map.put("price", item.getHarga());
+        map.put("category", Integer.parseInt(item.getKategori()));
+        //System.out.println(item.toString());
+        //System.out.println(map.toString());
 
         HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
         ResponseEntity<String> response = restTemplate.postForEntity(url, entity, String.class);
 
-        return response;
+        // check response
+        /*if (response.getStatusCode() == HttpStatus.OK) {
+            System.out.println("Request Successful");
+            System.out.println(response.getBody());
+        } else {
+            System.out.println("Request Failed");
+            System.out.println(response.getStatusCode());
+        }*/
     }
 }
