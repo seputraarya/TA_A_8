@@ -37,12 +37,12 @@ public class DeliveryModel {
     private Date tanggalDibuat;
 
     @NotNull
-    @Column(name = "tanggal_dikirim", nullable = false)
+    @Column(name = "tanggal_dikirim")
     private Date tanggalDikirim;
 
     @NotNull
     @Column(name = "sent", nullable = false)
-    private int sent;
+    private boolean sent;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_request_update_item" )

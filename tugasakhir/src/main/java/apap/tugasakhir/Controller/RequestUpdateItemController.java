@@ -30,12 +30,12 @@ public class RequestUpdateItemController {
         return "viewall-requestupdateitem";
     }
 
-    @GetMapping(value = "/execute/{noRequestUpdateItem}")
+    @GetMapping(value = "/execute/{idRequestUpdateItem}")
     public String executeRequestUpdateItem(
-            @PathVariable Long noRequestUpdateItem,
+            @PathVariable Long idRequestUpdateItem,
             Model model
     ) {
-        RequestUpdateItemModel requestUpdateItem = requestUpdateItemService.findByIdRequestUpdateItem(noRequestUpdateItem);
+        RequestUpdateItemModel requestUpdateItem = requestUpdateItemService.findByIdRequestUpdateItem(idRequestUpdateItem);
         requestUpdateItemRestService.executeRequestUpdateItem(requestUpdateItem);
         return "viewall-requestupdateitem";
     }
