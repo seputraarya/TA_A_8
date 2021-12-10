@@ -61,7 +61,7 @@
                 <a href="@{/delivery/viewall}" class="mx-2 btn btn-outline-warning">Lihat Daftar Delivery</a>
                 <a href="@{/}" class="mx-2 btn btn-warning">Pengiriman Delivery</a>
             </div>
-            <div sec:authorize="hasAuthority('STAFF_GUDANG')" class="d-flex justify-content-center">
+            <div sec:authorize="hasAnyAuthority('STAFF_GUDANG', 'STAFF_OPERASIONAL')" class="d-flex justify-content-center">
                 <!--ISI BUTTON FITUR
                     Daftar Request Update Item
                         Menerima Request Update Item
@@ -69,8 +69,7 @@
                     Update Stok Item
                 -->
                 <br>
-                <a th:href="@{/}" class="mx-2 btn btn-warning">Daftar Request Update Item</a>
-                <a th:href="@{/}" class="mx-2 btn btn-outline-warning">Update Stok Item</a>
+                <a th:href="@{/requestupdateitem/viewall}" class="mx-2 btn btn-warning">Daftar Request Update Item</a>
             </div>
         </div>
     </div>
