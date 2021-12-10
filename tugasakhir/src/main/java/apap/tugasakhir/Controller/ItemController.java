@@ -84,8 +84,8 @@ public class ItemController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                     "Request body has invalid type or missing field.");
         } else {
-        itemRestService.proposeItem(item);
-        return "redirect:/";
+            itemRestService.proposeItem(item);
+            return "redirect:/";
         }
     }
 
