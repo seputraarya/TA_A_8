@@ -19,6 +19,7 @@
             <th>No</th>
             <th>Item ID</th>
             <th>Tanggal Request</th>
+            <th>Tambahan Stok</th>
             <th></th>
         </tr>
         </thead>
@@ -27,8 +28,12 @@
             <td th:text="${iterationStatus.count}"></td>
             <td th:text="${requestupdateitem.idItem}"></td>
             <td th:text="${requestupdateitem.tanggalRequest}"></td>
+            <td th:text="${requestupdateitem.tambahanStok}"></td>
             <td th:if="${requestupdateitem.executed == false}">
-                <a class="btn btn-primary" th:href="@{/requestupdateitem/delete/} + ${requestupdateitem.idRequestUpdateItem}"></a>
+                <a class="btn btn-primary" th:href="@{/requestupdateitem/execute/} + ${requestupdateitem.idRequestUpdateItem}">Update</a>
+            </td>
+            <td th:if="${requestupdateitem.executed == true}">
+                <a class="btn btn-primary" th:href="@{/requestupdateitem/delete/} + ${requestupdateitem.idRequestUpdateItem}">Buat Delivery</a>
             </td>
         </tr>
         </tbody>
