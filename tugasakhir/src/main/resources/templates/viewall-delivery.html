@@ -35,8 +35,10 @@
 <!--      <th>Item</th>-->
     </tr>
     </thead>
+
+    <div sec:authorize="hasAuthority('STAFF_KURIR')" >
     <tbody>
-    <tr th:each="delivery, iterationStatus : ${listDelivery}">
+    <tr th:each="delivery, iterationStatus : ${listDelivery}" th:if="${#httpServletRequest.remoteUser} == ${delivery.pegawai.getUsername()}">
       <td th:text="${iterationStatus.count}"></td>
       <td th:text="${delivery.idDelivery}"></td>
       <td th:text="${delivery.pegawai.getNamaPegawai()}"></td>
@@ -45,14 +47,31 @@
       <td th:text="${delivery.tanggalDikirim}"></td>
       <td th:if="${delivery.sent} == 0">not send</td>
       <td th:if="${delivery.sent} == 1">sent</td>
-      <div sec:authorize="hasAuthority('STAFF_KURIR')" th:if="${delivery.sent} == 0 and ${#httpServletRequest.remoteUser} == ${delivery.pegawai.getUsername()}">
         <td>
-          <a class="btn btn-primary" th:href="@{/delivery/} + ${delivery.idDelivery}">Send</a>
+          <div th:if="${delivery.sent} == 0">
+            <a class="btn btn-primary" th:href="@{/delivery/} + ${delivery.idDelivery}">Send</a>
+          </div>
         </td>
-      </div>
-<!--      <td th:text="${delivery.requestUpdateItem.getIdItem()}"></td>-->
     </tr>
     </tbody>
+    </div>
+
+    <div sec:authorize="hasAuthority('STAFF_OPERASIONAL')">
+      <tbody>
+      <tr th:each="delivery, iterationStatus : ${listDelivery}">
+        <td th:text="${iterationStatus.count}"></td>
+        <td th:text="${delivery.idDelivery}"></td>
+        <td th:text="${delivery.pegawai.getNamaPegawai()}"></td>
+        <td th:text="${delivery.idCabang}"></td>
+        <td th:text="${delivery.tanggalDibuat}"></td>
+        <td th:text="${delivery.tanggalDikirim}"></td>
+        <td th:if="${delivery.sent} == 0">not send</td>
+        <td th:if="${delivery.sent} == 1">sent</td>
+      </tr>
+      </tbody>
+    </div>
+
+
   </table>
   <a class="btn btn-primary" href="/">Home</a>
 </div>
