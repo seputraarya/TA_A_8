@@ -9,4 +9,6 @@ import java.util.List;
 public interface DeliveryService {
     List<DeliveryModel> getDeliveryList();
     DeliveryModel createDelivery(PegawaiModel pegawai, RequestUpdateItemModel requestUpdateItem);
+    DeliveryModel getDeliveryById(Integer id);
+//    String getIdCabang(Long id);
 }

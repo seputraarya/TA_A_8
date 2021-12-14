@@ -51,7 +51,7 @@ public class RequestUpdateItemModel {
     private ProduksiModel produksi;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_delivery")
+    @JoinColumn(name = "id_delivery",nullable = true)
     @JsonIgnore
     private DeliveryModel delivery;
 }
