@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
   <meta charset="UTF-8">
@@ -13,6 +13,12 @@
 <div class="container">
   <h2>Daftar Delivery</h2>
   <br>
+  <div th:if="${exist} == 'true'">
+    <h1 th:text="'Pengiriman berhasil ke ' + ${alamat}"></h1>
+  </div>
+  <div th:if="${exist} == 'false'">
+    <h1>Retail tidak ditemukan</h1>
+  </div>
   <table class="table">
     <thead>
     <tr>
@@ -23,21 +29,49 @@
       <th>Tanggal Dibuat</th>
       <th>Tanggal Dikirim</th>
       <th>Status</th>
-      <th>Item</th>
+      <div sec:authorize="hasAuthority('STAFF_KURIR')">
+        <th>Action</th>
+      </div>
+<!--      <th>Item</th>-->
     </tr>
     </thead>
+
+    <div sec:authorize="hasAuthority('STAFF_KURIR')" >
     <tbody>
-    <tr th:each="delivery, iterationStatus : ${listDelivery}">
+    <tr th:each="delivery, iterationStatus : ${listDelivery}" th:if="${#httpServletRequest.remoteUser} == ${delivery.pegawai.getUsername()}">
       <td th:text="${iterationStatus.count}"></td>
       <td th:text="${delivery.idDelivery}"></td>
       <td th:text="${delivery.pegawai.getNamaPegawai()}"></td>
       <td th:text="${delivery.idCabang}"></td>
       <td th:text="${delivery.tanggalDibuat}"></td>
       <td th:text="${delivery.tanggalDikirim}"></td>
-      <td th:text="${delivery.sent}"></td>
-      <td th:text="${delivery.requestUpdateItem.getIdItem()}"></td>
+      <td th:if="${delivery.sent} == 0">not send</td>
+      <td th:if="${delivery.sent} == 1">sent</td>
+        <td>
+          <div th:if="${delivery.sent} == 0">
+            <a class="btn btn-primary" th:href="@{/delivery/} + ${delivery.idDelivery}">Send</a>
+          </div>
+        </td>
     </tr>
     </tbody>
+    </div>
+
+    <div sec:authorize="hasAuthority('STAFF_OPERASIONAL')">
+      <tbody>
+      <tr th:each="delivery, iterationStatus : ${listDelivery}">
+        <td th:text="${iterationStatus.count}"></td>
+        <td th:text="${delivery.idDelivery}"></td>
+        <td th:text="${delivery.pegawai.getNamaPegawai()}"></td>
+        <td th:text="${delivery.idCabang}"></td>
+        <td th:text="${delivery.tanggalDibuat}"></td>
+        <td th:text="${delivery.tanggalDikirim}"></td>
+        <td th:if="${delivery.sent} == 0">not send</td>
+        <td th:if="${delivery.sent} == 1">sent</td>
+      </tr>
+      </tbody>
+    </div>
+
+
   </table>
   <a class="btn btn-primary" href="/">Home</a>
 </div>

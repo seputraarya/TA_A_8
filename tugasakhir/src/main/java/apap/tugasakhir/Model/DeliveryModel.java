@@ -42,12 +42,14 @@ public class DeliveryModel {
 
     @NotNull
     @Column(name = "sent", nullable = false)
-    private boolean sent;
+    private int sent;
+
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_request_update_item" )
+    @JoinColumn(name = "id_request_update_item",nullable = true )
     @JsonIgnore
     private RequestUpdateItemModel requestUpdateItem;
+
 
 
 

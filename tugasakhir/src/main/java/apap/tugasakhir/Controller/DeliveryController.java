@@ -1,11 +1,9 @@
 package apap.tugasakhir.Controller;
 
+import apap.tugasakhir.DTO.Cabang;
 import apap.tugasakhir.DTO.Pegawai;
 import apap.tugasakhir.Model.*;
-import apap.tugasakhir.Service.DeliveryService;
-import apap.tugasakhir.Service.PegawaiService;
-import apap.tugasakhir.Service.RequestUpdateItemService;
-import apap.tugasakhir.Service.RoleService;
+import apap.tugasakhir.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -30,10 +28,17 @@ public class DeliveryController {
     @Autowired
     private RequestUpdateItemService requestUpdateItemService;
 
+    @Autowired
+    private CabangRestService cabangRestService;
+
     @GetMapping("/viewall")
     public String listDelivery(Model model) {
         List<DeliveryModel> listDelivery = deliveryService.getDeliveryList();
         model.addAttribute("listDelivery", listDelivery);
+        String exist = "";
+        String alamat = "";
+        model.addAttribute("exist",exist);
+        model.addAttribute("alamat",alamat);
         return "viewall-delivery";
     }
 
@@ -62,5 +67,28 @@ public class DeliveryController {
 
         return "add-delivery";
     }
-
+    @GetMapping("/{id}")
+    public String sendDelivery(
+            @PathVariable Integer id,
+            Model model){
+        List<Cabang> listCabang = cabangRestService.retrieveAllcabang();
+//        String idcabang = deliveryService.getIdCabang(id);
+        DeliveryModel delivery = deliveryService.getDeliveryById(id);
+        String exist = "false";
+        String alamat = "";
+        PegawaiModel pegawai = delivery.getPegawai();
+        for(Cabang cabang : listCabang){
+            if(String.valueOf(delivery.getIdCabang()).equals(cabang.getId())){
+                exist = "true";
+                alamat = cabang.getAlamat();
+                delivery.setSent(1);
+                pegawaiService.incrementCounter(pegawai);
+            }
+        }
+        model.addAttribute("exist",exist);
+        model.addAttribute("alamat",alamat);
+        List<DeliveryModel> listDelivery = deliveryService.getDeliveryList();
+        model.addAttribute("listDelivery", listDelivery);
+        return "viewall-delivery";
+    }
 }
