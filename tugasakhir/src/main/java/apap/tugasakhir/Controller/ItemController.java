@@ -70,6 +70,20 @@ public class ItemController {
         return "view-item";
     }
 
+    @GetMapping(value = "/update/{uuid}")
+    public String updateItemForm(@PathVariable String uuid, Model model) {
+        List<Item> listItem = itemRestService.retriveAllItem();
+        List<ProduksiModel> produksiAll = produksiService.getProduksiList();
+        List<ProduksiModel> produksiItem = new ArrayList<>();
+
+        return "form-update-stok-item";
+    }
+
+    @PutMapping(value = "//update/{uuid}")
+    public String updateItemSubmit(@PathVariable String uuid, @ModelAttribute Item item, RedirectAttributes redirect) {
+        return "redirect:/";
+    }
+
     @GetMapping("/propose-item")
     public String proposeItemForm(Model model) {
         List<MesinModel> listMesin = mesinDb.findAll();
