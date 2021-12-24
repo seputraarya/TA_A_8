@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Update Stok item </title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+    <nav th:replace="fragments/fragment :: navbar('')"></nav>
+    <div class="container">
+        <div class="card m-4 p-4">
+            <div class="card-body">
+                <div class="justify-content-center">
+                    <h2>Update Stok item</h2>
+                    <br>
+                    <form th:action="@{/item/update/{uuid}}" th:object="${item}" method="post">
+                        <!--FORM INPUT-->
+
+                        <label>Jumlah</label>
+                        <input required class="form-control" th:field="*{stok}" type="number" name="stok" />
+
+                        <label>Mesin yang ingin digunakan</label>
+                        <!--NOT DONE-->
+                        <select th:field="*{kategori}" name="kategori" class="form-control">
+                            <!--NOT DONE-->
+                            <option selected value="">--Pilih Mesin--</option>
+                            <div th:each="mesin: ${listMesinKategori}">
+                                <option th:value="${mesin}" th:text="${mesin.namaMesin}"></option>
+                            </div>
+                        </select>
+                        
+
+                        <br>
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                        <a class="btn btn-primary" href="/">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

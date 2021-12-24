@@ -70,6 +70,81 @@ public class ItemController {
         return "view-item";
     }
 
+    @GetMapping(value = "/update/{uuid}")
+    public String updateItemForm(@PathVariable String uuid, Model model) {
+        List<Item> listItem = itemRestService.retriveAllItem();
+        Item itemNew = new Item();
+        List<MesinModel> listMesin = mesinDb.findAll();
+        List<MesinModel> listMesinKategori = new ArrayList<>();
+
+        for (Item item : listItem) {
+            if (item.getUuid().equals(uuid)) {
+                itemNew = item;
+            }
+        }
+
+        for (MesinModel mesin : listMesin) {
+                String kategori = "";
+                switch (mesin.getIdKategori().intValue()) {
+                    case 1:
+                        kategori = "BUKU";
+                        break;
+                    case 2:
+                        kategori = "DAPUR";
+                        break;
+                    case 3:
+                        kategori = "MAKANAN & MINUMAN";
+                        break;
+                    case 4:
+                        kategori = "ELEKTRONIK";
+                        break;
+                    case 5:
+                        kategori = "FASHION";
+                        break;
+                    case 6:
+                        kategori = "KECANTIKAN & PERAWATAN DIRI";
+                        break;
+                    case 7:
+                        kategori = "FILM & MUSIK";
+                        break;
+                    case 8:
+                        kategori = "GAMING";
+                        break;
+                    case 9:
+                        kategori = "GADGET";
+                        break;
+                    case 10:
+                        kategori = "KESEHATAN";
+                        break;
+                    case 11:
+                        kategori = "RUMAH TANGGA";
+                        break;
+                    case 12:
+                        kategori = "FURNITURE";
+                        break;
+                    case 13:
+                        kategori = "ALAT & PERANGKAT KERAS";
+                        break;
+                    case 14:
+                        kategori = "WEDDING";
+                        break;
+                }
+                if (itemNew.getKategori().equals(kategori) && !listMesinKategori.contains(mesin)) {
+                    listMesinKategori.add(mesin);
+                }
+        }
+
+        model.addAttribute("item", itemNew);
+        model.addAttribute("listMesinKategori", listMesinKategori);
+        return "form-update-stok-item";
+    }
+
+    @PutMapping(value = "/update/{uuid}")
+    public String updateItemSubmit(@PathVariable String uuid, @ModelAttribute Item item, RedirectAttributes redirect) {
+        ProduksiModel produksi = new ProduksiModel();
+        return "redirect:/";
+    }
+
     @GetMapping("/propose-item")
     public String proposeItemForm(Model model) {
         List<MesinModel> listMesin = mesinDb.findAll();
@@ -86,8 +161,8 @@ public class ItemController {
 
     @RequestMapping(value = "/propose-item", method = RequestMethod.POST)
     public String proposeItemSubmit(@ModelAttribute ProposeItem item, RedirectAttributes redirect) {
-        System.out.println("nama item dari form propose item");
-        System.out.println(item.getNama());
+        // System.out.println("nama item dari form propose item");
+        // System.out.println(item.getNama());
         itemRestService.proposeItem(item);
         // System.out.println(proposeItem);
         return "redirect:/";
