@@ -34,17 +34,15 @@ public class RequestUpdateItemModel {
     @Column(name = "tambahan_stok", nullable = false)
     private Long tambahanStok;
 
-    @NotNull
-    @Column(name = "tanggal_request", nullable = false)
+    @Column(name = "tanggal_request")
     private Date tanggalRequest;
 
     @NotNull
     @Column(name = "id_cabang", nullable = false)
     private Long idCabang;
 
-    @NotNull
-    @Column(name = "executed", nullable = false)
-    private boolean executed;
+    @Column(name = "executed")
+    private Boolean executed;
 
     @OneToOne(mappedBy = "requestUpdateItem")
     @JsonIgnore

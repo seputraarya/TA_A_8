@@ -3,6 +3,8 @@ package apap.tugasakhir.Service;
 import apap.tugasakhir.Model.PegawaiModel;
 import apap.tugasakhir.Model.RoleModel;
 import apap.tugasakhir.Repository.PegawaiDb;
+import apap.tugasakhir.Repository.ProduksiDb;
+import apap.tugasakhir.Repository.RequestUpdateItemDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,12 @@ public class PegawaiServiceImpl implements PegawaiService{
 
     @Autowired
     private PegawaiDb pegawaiDb;
+
+    @Autowired
+    private RequestUpdateItemDb requestUpdateItemDb;
+
+    @Autowired
+    private ProduksiDb produksiDb;
 
     @Override
     public PegawaiModel addPegawai(PegawaiModel pegawai){

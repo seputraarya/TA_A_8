@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <meta charset="UTF-8">
@@ -30,14 +30,14 @@
             <td th:text="${requestupdateitem.tanggalRequest}"></td>
             <td th:text="${requestupdateitem.tambahanStok}"></td>
             <div sec:authorize="hasAuthority('STAFF_GUDANG')">
-            <td th:if="${requestupdateitem.executed == false}">
-                <a class="btn btn-primary" th:href="@{/requestupdateitem/execute/} + ${requestupdateitem.idRequestUpdateItem}">Update</a>
-            </td>
+                <td th:if="${requestupdateitem.executed == false}">
+                    <a class="btn btn-primary" th:href="@{/requestupdateitem/update/} + ${requestupdateitem.idRequestUpdateItem}">Update</a>
+                </td>
             </div>
             <div sec:authorize="hasAuthority('STAFF_OPERASIONAL')">
-            <td th:if="${requestupdateitem.executed == true}">
-                <a class="btn btn-danger" th:href="@{/delivery/create/} + ${requestupdateitem.idRequestUpdateItem}">Buat Delivery</a>
-            </td>
+                <td th:if="${requestupdateitem.executed == true}">
+                    <a class="btn btn-danger" th:href="@{/delivery/create/} + ${requestupdateitem.idRequestUpdateItem}">Buat Delivery</a>
+                </td>
             </div>
         </tr>
         </tbody>
