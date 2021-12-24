@@ -24,12 +24,13 @@
                         <label>Mesin yang ingin digunakan</label>
                         <!--NOT DONE-->
                         <select th:field="*{kategori}" name="kategori" class="form-control">
+                            <!--NOT DONE-->
                             <option selected value="">--Pilih Mesin--</option>
                             <div th:each="mesin: ${listMesinKategori}">
                                 <option th:value="${mesin}" th:text="${mesin.namaMesin}"></option>
                             </div>
                         </select>
-                        <!--NOT DONE-->
+                        
 
                         <br>
                         <button class="btn btn-primary" type="submit">Submit</button>
