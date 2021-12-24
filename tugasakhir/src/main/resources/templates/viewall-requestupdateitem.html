@@ -35,7 +35,7 @@
                 </td>
             </div>
             <div sec:authorize="hasAuthority('STAFF_OPERASIONAL')">
-                <td th:if="${requestupdateitem.executed == true}">
+                <td th:if="${requestupdateitem.delivery == null}">
                     <a class="btn btn-danger" th:href="@{/delivery/create/} + ${requestupdateitem.idRequestUpdateItem}">Buat Delivery</a>
                 </td>
             </div>

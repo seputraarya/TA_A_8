@@ -1,6 +1,7 @@
 package apap.tugasakhir.Service;
 
 import apap.tugasakhir.Model.MesinModel;
+import apap.tugasakhir.Model.PegawaiModel;
 import apap.tugasakhir.Model.ProduksiModel;
 import apap.tugasakhir.Model.RequestUpdateItemModel;
 import apap.tugasakhir.Repository.ProduksiDb;
@@ -25,7 +26,7 @@ public class ProduksiServiceImpl implements ProduksiService{
     public List<ProduksiModel> getProduksiList(){ return produksiDb.findAll(); }
 
     @Override
-    public ProduksiModel createProduksi(RequestUpdateItemModel requestUpdateItem, MesinModel mesin) {
+    public ProduksiModel createProduksi(RequestUpdateItemModel requestUpdateItem, MesinModel mesin, PegawaiModel pegawai) {
         ProduksiModel produksi = new ProduksiModel();
         produksi.setIdItem(requestUpdateItem.getIdItem());
         produksi.setIdKategori(requestUpdateItem.getIdKategori());
@@ -33,8 +34,10 @@ public class ProduksiServiceImpl implements ProduksiService{
         produksi.setTanggalProduksi(Date.valueOf(LocalDate.now()));
         produksi.setRequestUpdateItem(requestUpdateItem);
         produksi.setMesin(mesin);
+        produksi.setPegawai(pegawai);
 
 
         return produksiDb.save(produksi);
     }
+
 }

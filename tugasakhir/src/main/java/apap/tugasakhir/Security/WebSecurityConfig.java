@@ -19,17 +19,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-        .csrf()
-        .and()
         .cors()
+        .and()
+        .csrf()
         .disable()
         .authorizeRequests()
         .antMatchers("/css/**").permitAll()
         .antMatchers("/js/**").permitAll()
         .antMatchers("/api/v1/**").permitAll()
-        .antMatchers("/requestupdateitem/viewall").hasAnyAuthority("STAFF_OPERASIONAL", "STAFF GUDANG")
+        .antMatchers("/requestupdateitem/viewall").hasAnyAuthority("STAFF_OPERASIONAL", "STAFF_GUDANG")
         .antMatchers("/requestupdateitem/update/**").hasAuthority("STAFF_GUDANG")
         .antMatchers("/delivery/create/**").hasAuthority("STAFF_OPERASIONAL")
+        .antMatchers("/pegawai/add").permitAll()
         .anyRequest().authenticated()
         .and()
         .formLogin()

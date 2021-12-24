@@ -1,6 +1,8 @@
 package apap.tugasakhir.Service;
 
+import apap.tugasakhir.Model.DeliveryModel;
 import apap.tugasakhir.Model.PegawaiModel;
+import apap.tugasakhir.Model.ProduksiModel;
 import apap.tugasakhir.Model.RequestUpdateItemModel;
 import apap.tugasakhir.Repository.PegawaiDb;
 import apap.tugasakhir.Repository.RequestUpdateItemDb;
@@ -27,11 +29,20 @@ public class RequestUpdateItemServiceImpl implements RequestUpdateItemService {
     }
 
     @Override
-    public void updateRequestUpdateItem(RequestUpdateItemModel requestUpdateItem) {
-        PegawaiModel pegawai = requestUpdateItem.getProduksi().getPegawai();
+    public void updateRequestUpdateItem(RequestUpdateItemModel requestUpdateItem, ProduksiModel produksi) {
+        if (produksi == null) {
+            System.out.println("bebas");
+        }
+        PegawaiModel pegawai = produksi.getPegawai();
         pegawai.setCounter(pegawai.getCounter() + 1);
         pegawaiDb.save(pegawai);
         requestUpdateItem.setExecuted(true);
+        requestUpdateItemDb.save(requestUpdateItem);
+    }
+
+    @Override
+    public void updateDelivery(RequestUpdateItemModel requestUpdateItem, DeliveryModel delivery) {
+        requestUpdateItem.setDelivery(delivery);
         requestUpdateItemDb.save(requestUpdateItem);
     }
 }

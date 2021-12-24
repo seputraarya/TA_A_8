@@ -36,7 +36,6 @@ public class DeliveryModel {
     @Column(name = "tanggal_dibuat", nullable = false)
     private Date tanggalDibuat;
 
-    @NotNull
     @Column(name = "tanggal_dikirim")
     private Date tanggalDikirim;
 
