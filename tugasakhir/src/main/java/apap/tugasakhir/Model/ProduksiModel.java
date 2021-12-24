@@ -47,7 +47,7 @@ public class ProduksiModel {
     @JsonIgnore
     private MesinModel mesin;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_request_update_item", referencedColumnName = "idRequestUpdateItem")
     @JsonIgnore
     private RequestUpdateItemModel requestUpdateItem;
