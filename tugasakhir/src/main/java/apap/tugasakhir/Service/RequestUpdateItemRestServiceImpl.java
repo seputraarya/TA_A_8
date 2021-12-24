@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -22,6 +24,7 @@ public class RequestUpdateItemRestServiceImpl implements RequestUpdateItemRestSe
     @Override
     public RequestUpdateItemModel createRequestUpdateItem(RequestUpdateItemModel requestUpdateItem) {
         requestUpdateItem.setExecuted(false);
+        requestUpdateItem.setTanggalRequest(Date.valueOf(LocalDate.now()));
         return requestUpdateItemDb.save(requestUpdateItem);
     }
 

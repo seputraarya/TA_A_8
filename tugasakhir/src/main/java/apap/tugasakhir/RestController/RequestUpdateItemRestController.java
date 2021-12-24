@@ -1,4 +1,4 @@
-package apap.tugasakhir.Rest;
+package apap.tugasakhir.RestController;
 
 import apap.tugasakhir.Model.RequestUpdateItemModel;
 import apap.tugasakhir.Service.RequestUpdateItemRestService;

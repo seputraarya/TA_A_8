@@ -19,10 +19,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+        .csrf()
+        .and()
+        .cors()
+        .disable()
         .authorizeRequests()
         .antMatchers("/css/**").permitAll()
         .antMatchers("/js/**").permitAll()
         .antMatchers("/api/v1/**").permitAll()
+        .antMatchers("/requestupdateitem/viewall").hasAnyAuthority("STAFF_OPERASIONAL", "STAFF GUDANG")
+        .antMatchers("/requestupdateitem/update/**").hasAuthority("STAFF_GUDANG")
+        .antMatchers("/delivery/create/**").hasAuthority("STAFF_OPERASIONAL")
         .anyRequest().authenticated()
         .and()
         .formLogin()
@@ -40,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 //    @Autowired
 //    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 //        auth.inMemoryAuthentication().passwordEncoder(encoder()).withUser("admin")
-//                .password(encoder().encode("admin")).roles("ADMIN");
+//                .password(encoder().encode("admin")).roles("STAFF_GUDANG");
 //    }
 
     @Autowired
