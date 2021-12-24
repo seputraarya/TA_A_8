@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-< lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <meta charset="UTF-8">
-    <title> Viewall Item </title>
+    <title> Update Stok item </title>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
@@ -21,8 +21,15 @@
                         <label>Jumlah</label>
                         <input required class="form-control" th:field="*{stok}" type="number" name="stok" />
 
-                        <label>Mesin</label>
-                        <input required class="form-control" type="text" />
+                        <label>Mesin yang ingin digunakan</label>
+                        <!--NOT DONE-->
+                        <select th:field="*{kategori}" name="kategori" class="form-control">
+                            <option selected value="">--Pilih Mesin--</option>
+                            <div th:each="mesin: ${listMesinKategori}">
+                                <option th:value="${mesin}" th:text="${mesin.namaMesin}"></option>
+                            </div>
+                        </select>
+                        <!--NOT DONE-->
 
                         <br>
                         <button class="btn btn-primary" type="submit">Submit</button>

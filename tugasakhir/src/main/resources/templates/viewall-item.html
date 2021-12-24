@@ -21,7 +21,7 @@
             <th>Nama</th>
             <th>Harga</th>
             <th>Stok</th>
-            <th>Action</th>
+            <th style="text-align:center;">Action</th>
         </tr>
         </thead>
         <tbody>
@@ -30,9 +30,9 @@
             <td th:text="${item.nama}"></td>
             <td th:text="${item.harga}"></td>
             <td th:text="${item.stok}"></td>
-            <td>
+            <td align="center">
                 <a class="btn btn-primary" th:href="@{/item/view/} + ${item.uuid}">Detail</a>
-                <a sec:authorize="hasAnyAuthority('STAFF_GUDANG')" class="btn btn-primary" th:href="@{/item/update/} + ${item.uuid}">Update</a>
+                <a sec:authorize="hasAnyAuthority('STAFF_ GUDANG')" class="btn btn-primary" th:href="@{/item/update/} + ${item.uuid}">Update</a>
             </td>
         </tr>
         </tbody>

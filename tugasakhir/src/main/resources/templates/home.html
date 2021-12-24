@@ -52,7 +52,7 @@
                 <a href="@{/}" class="mx-2 btn btn-warning">Assign Delivery Kurir</a>
                 <a th:href="@{/delivery/viewall}" class="mx-2 btn btn-warning"> Lihat Daftar Delivery</a>
             </div>
-            <div sec:authorize="hasAnyAuthority('STAFF_GUDANG', 'STAFF_OPERASIONAL')" class="d-flex justify-content-center">
+            <div sec:authorize="hasAuthority('STAFF_ GUDANG')" class="d-flex justify-content-center">
                 <!--ISI BUTTON FITUR
                     Daftar Request Update Item
                         Menerima Request Update Item

@@ -13,4 +13,6 @@ public interface ItemRestService {
     List<Item> retriveAllItem();
 
     void proposeItem(ProposeItem item);
+
+    
 }
