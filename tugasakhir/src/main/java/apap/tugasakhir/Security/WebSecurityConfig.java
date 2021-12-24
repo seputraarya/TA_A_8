@@ -30,7 +30,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         .antMatchers("/requestupdateitem/viewall").hasAnyAuthority("STAFF_OPERASIONAL", "STAFF_GUDANG")
         .antMatchers("/requestupdateitem/update/**").hasAuthority("STAFF_GUDANG")
         .antMatchers("/delivery/create/**").hasAuthority("STAFF_OPERASIONAL")
-        .antMatchers("/pegawai/add").permitAll()
         .anyRequest().authenticated()
         .and()
         .formLogin()
