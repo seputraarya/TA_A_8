@@ -2,13 +2,12 @@ package apap.tugasakhir.Controller;
 
 import apap.tugasakhir.DTO.Mesin;
 import apap.tugasakhir.DTO.Pegawai;
-import apap.tugasakhir.Model.MesinModel;
-import apap.tugasakhir.Model.PegawaiModel;
-import apap.tugasakhir.Model.RequestUpdateItemModel;
-import apap.tugasakhir.Model.RoleModel;
+import apap.tugasakhir.Model.*;
 import apap.tugasakhir.Service.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +30,9 @@ public class RequestUpdateItemController {
 
     @Autowired
     private ProduksiService produksiService;
+
+    @Autowired
+    private PegawaiService pegawaiService;
 
     @GetMapping(value = "/viewall")
     public String listRequestUpdateItem(Model model) {
@@ -58,12 +60,15 @@ public class RequestUpdateItemController {
             @PathVariable Long idRequestUpdateItem,
             Mesin mesin,
             Model model
-    ) {
+    ) throws JsonProcessingException {
+        PegawaiModel pegawai = pegawaiService.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
         MesinModel mesinProduksi = mesinService.getMesinByIdMesin(mesin.getId().intValue());
         RequestUpdateItemModel requestUpdateItem = requestUpdateItemService.findByIdRequestUpdateItem(idRequestUpdateItem);
-        if (requestUpdateItem.getExecuted()) {
-            produksiService.createProduksi(requestUpdateItem, mesinProduksi);
-            requestUpdateItemService.updateRequestUpdateItem(requestUpdateItem);
+        System.out.println(requestUpdateItem.getExecuted());
+
+        if (requestUpdateItem.getExecuted() == false) {
+            ProduksiModel produksi = produksiService.createProduksi(requestUpdateItem, mesinProduksi, pegawai);
+            requestUpdateItemService.updateRequestUpdateItem(requestUpdateItem, produksi);
             requestUpdateItemRestService.executeRequestUpdateItem(requestUpdateItem);
         }
         return "update-requestupdateitem";

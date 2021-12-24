@@ -29,7 +29,8 @@ public class DeliveryServiceImpl implements DeliveryService {
         delivery.setRequestUpdateItem(requestUpdateItem);
         delivery.setIdCabang(requestUpdateItem.getIdCabang().intValue());
         delivery.setTanggalDibuat(Date.valueOf(LocalDate.now()));
-        delivery.setSent(1);
+        delivery.setSent(0);
+        delivery.setTanggalDikirim(Date.valueOf(LocalDate.now()));
 
         return deliveryDb.save(delivery);
     }

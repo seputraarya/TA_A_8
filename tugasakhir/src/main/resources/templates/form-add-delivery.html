@@ -16,7 +16,7 @@
             <div class="justify-content-center">
                 <h2>Assign Delivery</h2>
                 <br>
-                <form th:object="${kurir}" method="POST">
+                <form th:object="${kurir}" th:method="POST">
 
                     <label>Kurir :</label>
                     <select th:field="*{username}" class="form-control">

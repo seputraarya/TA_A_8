@@ -6,6 +6,7 @@ import apap.tugasakhir.Model.*;
 import apap.tugasakhir.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -54,16 +55,17 @@ public class DeliveryController {
         return "form-add-delivery";
     }
 
-    @PostMapping("/create/{idRequestUpdateItem}")
+    @PostMapping(value = "/create/{idRequestUpdateItem}", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String createDeliverySubmit(
             @PathVariable Long idRequestUpdateItem,
-            @RequestBody Pegawai kurir,
+            Pegawai kurir,
             Model model
     ) {
         PegawaiModel pegawai = pegawaiService.findByUsername(kurir.getUsername());
         RequestUpdateItemModel requestUpdateItem = requestUpdateItemService.findByIdRequestUpdateItem(idRequestUpdateItem);
-        deliveryService.createDelivery(pegawai, requestUpdateItem);
+        DeliveryModel delivery = deliveryService.createDelivery(pegawai, requestUpdateItem);
         pegawaiService.incrementCounter(pegawai);
+        requestUpdateItemService.updateDelivery(requestUpdateItem, delivery);
 
         return "add-delivery";
     }
