@@ -139,9 +139,9 @@ public class ItemController {
         return "form-update-stok-item";
     }
 
-    @PutMapping(value = "/update/{uuid}")
+    @RequestMapping(value = "/update/{uuid}", method = RequestMethod.PUT)
     public String updateItemSubmit(@PathVariable String uuid, @ModelAttribute Item item, RedirectAttributes redirect) {
-        ProduksiModel produksi = new ProduksiModel();
+        item.setStok(item.getStok());
         return "redirect:/";
     }
 

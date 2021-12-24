@@ -44,7 +44,7 @@
                 <div sec:authorize="hasAnyAuthority('STAFF_KURIR', 'STAFF_OPERASIONAL')">
                     <a th:href="@{/delivery/viewall}" class="mx-2 btn btn-outline-warning">Lihat Daftar Delivery</a>
                 </div>
-                <div sec:authorize="hasAnyAuthority('STAFF_GUDANG', 'STAFF_OPERASIONAL')">
+                <div sec:authorize="hasAnyAuthority('STAFF_ GUDANG', 'STAFF_OPERASIONAL')">
                     <a th:href="@{/requestupdateitem/viewall}" class="mx-2 btn btn-warning">Lihat Daftar Request Update Item</a>
                 </div>
             </div>

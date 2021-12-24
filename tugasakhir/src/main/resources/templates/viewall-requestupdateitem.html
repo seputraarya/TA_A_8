@@ -29,7 +29,7 @@
             <td th:text="${requestupdateitem.idItem}"></td>
             <td th:text="${requestupdateitem.tanggalRequest}"></td>
             <td th:text="${requestupdateitem.tambahanStok}"></td>
-            <div sec:authorize="hasAuthority('STAFF_GUDANG')">
+            <div sec:authorize="hasAuthority('STAFF_ GUDANG')">
                 <td th:if="${requestupdateitem.executed == false}">
                     <a class="btn btn-primary" th:href="@{/requestupdateitem/update/} + ${requestupdateitem.idRequestUpdateItem}">Update</a>
                 </td>
