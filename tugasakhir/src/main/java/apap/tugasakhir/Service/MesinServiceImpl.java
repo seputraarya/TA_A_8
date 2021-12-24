@@ -30,4 +30,7 @@ public class MesinServiceImpl implements MesinService{
         }
         return null;
     }
+
+    @Override
+    public List<MesinModel> getMesinByIdKategori(Long idKategori) { return mesinDb.findByIdKategori(idKategori); }
 }

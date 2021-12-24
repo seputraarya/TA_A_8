@@ -7,4 +7,5 @@ import java.util.List;
 public interface MesinService {
     List<MesinModel> getMesinList();
     MesinModel getMesinByIdMesin(int idMesin);
+    List<MesinModel> getMesinByIdKategori(Long idKategori);
 }
